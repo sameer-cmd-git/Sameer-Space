@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Minimal portfolio of Sameer Kulkarni — ECE student exploring coding, electronics, and projects.">
+    <meta name="theme-color" content="#000000">
+    <title>Sameer Kulkarni - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta property="og:title" content="Sameer Kulkarni — Portfolio">
+    <meta property="og:description" content="ECE student building and learning: projects, skills, and contact.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="background.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        'accent-white': '#ffffff',
+                        'accent-light': '#f8f9fa',
+                        'accent-grey': '#6c757d',
+                        'accent-dark': '#343a40',
+                        'dark-bg': '#000000',
+                        'card-bg': '#1a1a1a',
+                        'border-grey': '#333333',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'fadeInUp': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 20px rgba(255, 255, 255, 0.3)' },
+                            '100%': { boxShadow: '0 0 30px rgba(255, 255, 255, 0.5)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px; /* Account for fixed navigation */
+        }
+        /* Respect reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+            .hero-bg { background-attachment: scroll; }
+        }
+        
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(26, 26, 26, 0.8)), url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #6c757d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+        }
+        
+        .skill-badge {
+            transition: all 0.3s ease;
+        }
+        
+        .skill-badge:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+        
+        .elegant-border {
+            border: 2px solid transparent;
+            background: linear-gradient(#1a1a1a, #1a1a1a) padding-box,
+                        linear-gradient(45deg, #ffffff, #6c757d) border-box;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #343a40 100%);
+        }
+        
+        .subtle-gradient {
+            background: linear-gradient(135deg, #1a1a1a 0%, #343a40 100%);
+        }
+        
+        .section-fade {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .section-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .loading-shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* Accessible focus outlines */
+        .focus-ring:focus-visible {
+            outline: 2px solid #ffffff;
+            outline-offset: 2px;
+        }
+
+        /* Subtle unique underline for name (minimal visual change) */
+        .unique-name {
+            position: relative;
+            display: inline-block;
+        }
+        .unique-name::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            height: 2px;
+            width: 60%;
+            background: linear-gradient(90deg, #ffffff 0%, #6c757d 100%);
+            opacity: 0.4;
+        }
+    </style>
+</head>
+<body class="font-poppins bg-dark-bg text-white overflow-x-hidden">
+    <a href="#home" class="sr-only focus:not-sr-only focus-ring absolute left-2 top-2 z-[60] bg-card-bg text-white px-3 py-2 rounded">Skip to content</a>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-dark-bg/95 backdrop-blur-md border-b border-border-grey/30" role="navigation" aria-label="Primary">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-center items-center">
+                <div class="hidden md:flex space-x-6">
+                    <a href="#home" class="nav-link hover:text-accent-white transition-colors text-accent-grey text-sm focus-ring">Home</a>
+                    <a href="#about" class="nav-link hover:text-accent-white transition-colors text-accent-grey text-sm focus-ring">About</a>
+                    <a href="#education" class="nav-link hover:text-accent-white transition-colors text-accent-grey text-sm focus-ring">Education</a>
+                    <a href="#projects" class="nav-link hover:text-accent-white transition-colors text-accent-grey text-sm focus-ring">Projects</a>
+                    <a href="#skills" class="nav-link hover:text-accent-white transition-colors text-accent-grey text-sm focus-ring">Skills</a>
+                    <a href="#contact" class="nav-link hover:text-accent-white transition-colors text-accent-grey text-sm focus-ring">Contact</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-accent-white absolute right-6 focus-ring" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle menu">
+                    <i class="fas fa-bars text-lg"></i>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden mt-3 space-y-3">
+                <a href="#home" class="block hover:text-accent-white transition-colors text-accent-grey text-sm focus-ring">Home</a>
+                <a href="#about" class="block hover:text-accent-white transition-colors text-accent-grey text-sm focus-ring">About</a>
+                <a href="#education" class="block hover:text-accent-white transition-colors text-accent-grey text-sm focus-ring">Education</a>
+                <a href="#projects" class="block hover:text-accent-white transition-colors text-accent-grey text-sm focus-ring">Projects</a>
+                <a href="#skills" class="block hover:text-accent-white transition-colors text-accent-grey text-sm focus-ring">Skills</a>
+                <a href="#contact" class="block hover:text-accent-white transition-colors text-accent-grey text-sm focus-ring">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Clean Layout -->
+    <section id="home" class="hero-bg min-h-screen flex flex-col relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/40 to-accent-dark/40"></div>
+        
+        <!-- Top Left Tagline -->
+        <div class="absolute top-20 left-8 z-20">
+            <p class="text-accent-light text-sm font-medium tracking-wider uppercase opacity-80">
+                Codes • Circuits • Cosmos
+            </p>
+        </div>
+        
+        
+        
+        <!-- Main Content - Split Layout -->
+        <div class="flex-1 flex flex-col md:flex-row relative z-10">
+            <!-- Left Side - Name -->
+            <div class="w-full md:w-1/2 flex items-center justify-center pl-6 md:pl-12 py-8 md:py-0">
+                <div class="text-center md:text-left">
+                    <h1 class="text-3xl md:text-4xl lg:text-6xl font-bold gradient-text animate-float tracking-wider leading-none unique-name" aria-label="Sameer">
+                        SAMEER
+                    </h1>
+                    <p class="text-lg md:text-xl mt-3 text-accent-light font-light tracking-wide">
+                        Learner
+                    </p>
+                    <div class="mt-4">
+                        <a href="#about" class="inline-block px-4 py-2 bg-gradient-to-r from-accent-white to-accent-grey text-dark-bg rounded font-semibold hover:scale-105 transition-transform text-sm">
+                            Explore My Journey
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Side - Recent Projects -->
+            <div class="w-full md:w-1/2 flex items-center justify-center pr-6 md:pr-12 pb-8 md:pb-0">
+                <div class="max-w-md w-full">
+                    <div class="elegant-border rounded-xl p-6 bg-card-bg/90 backdrop-blur-sm">
+                        <div class="text-center mb-4">
+                            <h2 class="text-xl font-bold text-accent-white mb-2">Recent Projects</h2>
+                            <p class="text-accent-grey text-sm">Latest work & innovations</p>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <!-- NASA Bot Preview -->
+                            <div class="elegant-border rounded-lg p-3 bg-card-bg/50 hover:bg-card-bg/70 transition-colors cursor-pointer focus-ring" role="button" tabindex="0" aria-label="View NASA Telegram Bot in Projects" data-scroll-target="#projects">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-gradient-to-r from-accent-white to-accent-grey rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-rocket text-sm text-dark-bg"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h3 class="text-accent-white font-semibold text-sm">NASA Telegram Bot</h3>
+                                        <p class="text-accent-grey text-xs">Space data via APIs</p>
+                                    </div>
+                                    <i class="fas fa-arrow-right text-accent-grey text-xs"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- Gym App Preview -->
+                            <div class="elegant-border rounded-lg p-3 bg-card-bg/50 hover:bg-card-bg/70 transition-colors cursor-pointer focus-ring" role="button" tabindex="0" aria-label="View Gym Fitness Tracker in Projects" data-scroll-target="#projects">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-gradient-to-r from-accent-grey to-accent-white rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-dumbbell text-sm text-dark-bg"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h3 class="text-accent-white font-semibold text-sm">Gym Customer Management App</h3>
+                                        <p class="text-accent-grey text-xs">Desktop app for managing gym customers</p>
+                                    </div>
+                                    <i class="fas fa-arrow-right text-accent-grey text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <a href="#projects" class="inline-block px-3 py-2 bg-gradient-to-r from-accent-white to-accent-grey text-dark-bg rounded font-semibold hover:scale-105 transition-transform text-xs focus-ring">
+                                View All Projects
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#about">
+                <i class="fas fa-chevron-down text-accent-white text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section - Minimal -->
+    <section id="about" class="py-16 pt-24 gradient-bg">
+        <div class="container mx-auto px-6">
+            <div class="section-fade max-w-2xl mx-auto text-center">
+                <h2 class="text-2xl font-bold mb-6 gradient-text">About Me</h2>
+                
+                <div class="elegant-border rounded-lg p-6 bg-card-bg">
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-accent-white to-accent-grey flex items-center justify-center">
+                        <i class="fas fa-user text-lg text-dark-bg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-3 text-accent-white">Sameer</h3>
+                    <p class="text-accent-light text-sm mb-4">
+                        1st year ECE student at BVB College. Learning programming and exploring tech.
+                    </p>
+                    <p class="text-accent-grey text-xs italic">
+                        Student | Learning & Building
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-16 pt-24 bg-dark-bg flex items-center relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/40 to-accent-dark/50 z-10"></div>
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('bvb.jpg');"></div>
+        
+        <div class="container mx-auto px-6 relative z-20">
+            <div class="section-fade max-w-lg mx-auto">
+                <h2 class="text-2xl font-bold text-center mb-6 gradient-text">Education</h2>
+                
+                <div class="elegant-border rounded-lg p-4 bg-card-bg/80 backdrop-blur-sm text-center">
+                    <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-gradient-to-r from-accent-white to-accent-grey flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-sm text-dark-bg"></i>
+                    </div>
+                    
+                    <h3 class="text-lg font-bold text-accent-white mb-3">
+                        BVB College of Engineering
+                    </h3>
+                    <p class="text-accent-light text-sm mb-2">KLE Technological University</p>
+                    <p class="text-accent-grey text-xs mb-3">Electronics & Communication • 1st Year</p>
+                    <p class="text-accent-grey text-xs">2025 - 2029</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="min-h-screen py-20 pt-24 subtle-gradient flex items-center">
+        <div class="container mx-auto px-6">
+            <div class="section-fade max-w-6xl mx-auto">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 gradient-text">My Projects</h2>
+                
+                <div class="space-y-8">
+                    <!-- NASA Telegram Bot -->
+                    <div class="card-hover elegant-border rounded-xl p-6 bg-card-bg">
+                        <div class="grid md:grid-cols-4 gap-4 items-center">
+                            <div class="text-center">
+                                <div class="w-16 h-16 mx-auto bg-gradient-to-r from-accent-white to-accent-grey rounded-lg flex items-center justify-center mb-3">
+                                    <i class="fas fa-rocket text-xl text-dark-bg"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="md:col-span-3 space-y-3">
+                                <h3 class="text-lg font-bold text-accent-white">NASA Telegram Bot</h3>
+                                <p class="text-accent-light leading-relaxed text-sm">
+                                    A comprehensive Telegram bot that utilizes multiple NASA APIs to provide real-time information about space missions, ISS tracking, Mars rover data, Hubble telescope discoveries, JWST observations, and much more.
+                                </p>
+                                
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 bg-accent-white/20 text-accent-white rounded-full text-xs font-medium">Python</span>
+                                    <span class="px-2 py-1 bg-accent-grey/20 text-accent-grey rounded-full text-xs font-medium">NASA APIs</span>
+                                    <span class="px-2 py-1 bg-accent-light/20 text-accent-light rounded-full text-xs font-medium">Telegram Bot</span>
+                                    <span class="px-2 py-1 bg-accent-white/20 text-accent-white rounded-full text-xs font-medium">Space Data</span>
+                                </div>
+                                
+                                <div class="flex gap-3 pt-2">
+                                    <a href="https://github.com/sameer-cmd-git/askNASA-bot" target="_blank" rel="noopener" class="text-accent-white hover:text-accent-light transition-colors flex items-center text-sm" aria-label="View NASA Bot code on GitHub">
+                                        <i class="fab fa-github text-lg mr-2"></i>
+                                        <span>View Code</span>
+                                    </a>
+                                    <a href="https://t.me/nasa_upload_bot" target="_blank" rel="noopener" class="text-accent-white hover:text-accent-light transition-colors flex items-center text-sm" aria-label="Open NASA Telegram Bot on Telegram">
+                                        <i class="fas fa-external-link-alt text-lg mr-2"></i>
+                                        <span>Try Bot</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gym App -->
+                    <div class="card-hover elegant-border rounded-xl p-6 bg-card-bg">
+                        <div class="grid md:grid-cols-4 gap-4 items-center">
+                            <div class="text-center md:order-2">
+                                <div class="w-16 h-16 mx-auto bg-gradient-to-r from-accent-grey to-accent-white rounded-lg flex items-center justify-center mb-3">
+                                    <i class="fas fa-dumbbell text-xl text-dark-bg"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="md:col-span-3 md:order-1 space-y-3">
+                                <h3 class="text-lg font-bold text-accent-white">Gym Customer Management App</h3>
+                                <p class="text-accent-light leading-relaxed text-sm">
+                                    A desktop application to manage gym customers: memberships, billing cycles, attendance tracking, and customer profiles, with a clean and efficient interface for staff.
+                                </p>
+                                
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 bg-accent-grey/20 text-accent-grey rounded-full text-xs font-medium">Desktop App</span>
+                                    <span class="px-2 py-1 bg-accent-white/20 text-accent-white rounded-full text-xs font-medium">Customer Management</span>
+                                    <span class="px-2 py-1 bg-accent-light/20 text-accent-light rounded-full text-xs font-medium">Memberships</span>
+                                    <span class="px-2 py-1 bg-accent-grey/20 text-accent-grey rounded-full text-xs font-medium">Analytics</span>
+                                </div>
+                                
+                                <div class="flex gap-3 pt-2">
+                                    <a href="https://github.com/sameer-cmd-git" target="_blank" rel="noopener" class="text-accent-white hover:text-accent-light transition-colors flex items-center text-sm">
+                                        <i class="fab fa-github text-lg mr-2"></i>
+                                        <span>View Code</span>
+                                    </a>
+                                    <a href="#" class="text-accent-white hover:text-accent-light transition-colors flex items-center text-sm">
+                                        <i class="fas fa-external-link-alt text-lg mr-2"></i>
+                                        <span>Live Demo</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-8">
+                    <p class="text-accent-grey text-sm mb-4 italic">
+                        "Building and learning, one project at a time" 🚀
+                    </p>
+                    <a href="#skills" class="inline-block px-4 py-2 bg-gradient-to-r from-accent-white to-accent-grey text-dark-bg rounded font-semibold hover:scale-105 transition-transform text-sm focus-ring">
+                        View What I'm Learning
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="min-h-screen py-20 pt-24 bg-dark-bg flex items-center">
+        <div class="container mx-auto px-6">
+            <div class="section-fade max-w-6xl mx-auto">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 gradient-text">What I'm Learning</h2>
+                
+                <div class="max-w-2xl mx-auto">
+                    <div class="elegant-border rounded-lg p-6 bg-card-bg text-center">
+                        <p class="text-accent-light mb-4">
+                            Just starting my tech journey. Here's what I'm currently learning:
+                        </p>
+                        
+                        <div class="flex flex-wrap justify-center gap-3">
+                            <span class="px-3 py-1 bg-accent-white/10 text-accent-white rounded-full text-sm">Python Basics</span>
+                            <span class="px-3 py-1 bg-accent-grey/10 text-accent-grey rounded-full text-sm">C Programming</span>
+                            <span class="px-3 py-1 bg-accent-light/10 text-accent-light rounded-full text-sm">Git/GitHub</span>
+                            <span class="px-3 py-1 bg-accent-white/10 text-accent-white rounded-full text-sm">Linux Commands</span>
+                            <span class="px-3 py-1 bg-accent-grey/10 text-accent-grey rounded-full text-sm">Electronics</span>
+                        </div>
+                        
+                        <p class="text-accent-grey text-sm mt-4 italic">
+                            Learning something new every day!
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-8">
+                    <a href="#contact" class="inline-block px-4 py-2 bg-gradient-to-r from-accent-white to-accent-grey text-dark-bg rounded font-semibold hover:scale-105 transition-transform text-sm focus-ring">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 pt-24 bg-dark-bg">
+        <div class="container mx-auto px-6">
+            <div class="section-fade">
+                <h2 class="text-3xl font-bold mb-8 gradient-text">Contact</h2>
+                <div class="max-w-4xl grid md:grid-cols-2 gap-8">
+                    
+                    <!-- Contact Form -->
+                    <div class="elegant-border rounded-2xl p-8 bg-card-bg">
+                        <h3 class="text-2xl font-semibold mb-6 text-accent-white">Send Message</h3>
+                        <form id="contact-form" class="space-y-6" aria-label="Contact form">
+                            <div>
+                                <label class="block text-accent-light mb-2" for="name">Name</label>
+                                <input type="text" id="name" name="name" required autocomplete="name" class="w-full px-4 py-3 bg-dark-bg border border-accent-grey/30 rounded-lg focus:border-accent-white focus:outline-none transition-colors text-white" placeholder="Your name">
+                            </div>
+                            <div>
+                                <label class="block text-accent-light mb-2" for="email">Email</label>
+                                <input type="email" id="email" name="email" required autocomplete="email" class="w-full px-4 py-3 bg-dark-bg border border-accent-grey/30 rounded-lg focus:border-accent-white focus:outline-none transition-colors text-white" placeholder="name@example.com">
+                            </div>
+                            <div>
+                                <label class="block text-accent-light mb-2" for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 bg-dark-bg border border-accent-grey/30 rounded-lg focus:border-accent-white focus:outline-none transition-colors text-white resize-none" placeholder="Say hello..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-accent-white to-accent-grey text-dark-bg rounded-lg font-semibold hover:scale-105 transition-transform focus-ring">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="space-y-8">
+                        <div class="elegant-border rounded-2xl p-8 bg-card-bg">
+                            <h3 class="text-2xl font-semibold mb-6 text-accent-white">Get In Touch</h3>
+                            <p class="text-accent-light mb-8 leading-relaxed">
+                                I'm always open to discussing new opportunities, collaborations, or just having a chat about technology and innovation. Feel free to reach out!
+                            </p>
+                            
+                            <div class="space-y-4">
+                                <a href="mailto:sameer.defbot@gmail.com" class="flex items-center space-x-3 text-accent-light hover:text-accent-white transition-colors focus-ring rounded">
+                                    <div class="w-10 h-10 bg-accent-white/20 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-envelope text-sm text-accent-white"></i>
+                                    </div>
+                                    <span class="text-sm">sameer.defbot@gmail.com</span>
+                                </a>
+                                
+                                <a href="https://github.com/sameer-cmd-git" target="_blank" rel="noopener" class="flex items-center space-x-3 text-accent-light hover:text-accent-white transition-colors focus-ring rounded">
+                                    <div class="w-10 h-10 bg-accent-white/20 rounded-lg flex items-center justify-center">
+                                        <i class="fab fa-github text-sm text-accent-white"></i>
+                                    </div>
+                                    <span class="text-sm">github.com/sameer-cmd-git</span>
+                                </a>
+                                
+                                <div class="flex items-center space-x-3 text-accent-light">
+                                    <div class="w-10 h-10 bg-accent-grey/20 rounded-lg flex items-center justify-center">
+                                        <i class="fab fa-linkedin text-sm text-accent-grey"></i>
+                                    </div>
+                                    <span class="text-sm">LinkedIn</span>
+                                </div>
+                                
+                                <p class="text-accent-grey text-xs italic mt-4">
+                                    Always open to connecting with fellow learners!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-6 bg-card-bg border-t border-accent-grey/20">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
+                <p class="text-accent-grey text-sm">
+                    © 2025 Sameer - Learning & Building
+                </p>
+                <p class="text-accent-grey text-xs">
+                    Made with curiosity and code 🚀
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const expanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+            mobileMenuBtn.setAttribute('aria-expanded', String(!expanded));
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+                }
+                // Close mobile menu if open
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Keyboard activation for preview cards
+        document.querySelectorAll('[data-scroll-target]').forEach(el => {
+            el.addEventListener('click', () => {
+                const sel = el.getAttribute('data-scroll-target');
+                const tgt = sel ? document.querySelector(sel) : null;
+                if (tgt) tgt.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+            });
+            el.addEventListener('keydown', (ev) => {
+                if (ev.key === 'Enter' || ev.key === ' ') {
+                    ev.preventDefault();
+                    el.click();
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        if (!prefersReducedMotion) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            document.querySelectorAll('.section-fade').forEach(section => {
+                observer.observe(section);
+            });
+        } else {
+            document.querySelectorAll('.section-fade').forEach(section => {
+                section.classList.add('visible');
+            });
+        }
+
+        // Contact form handling
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Simple validation
+            if (!name || !email || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            // Here you would typically send the data to a server
+            // For now, we'll just show a success message
+            alert('Thank you for your message! I\'ll get back to you soon.');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Add active state to navigation
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop <= 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-accent-white');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('text-accent-white');
+                }
+            });
+        });
+
+        // Parallax effect for hero section
+        if (!prefersReducedMotion) {
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.hero-bg');
+                if (hero) {
+                    hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                }
+            });
+        }
+    </script>
+</body>
+</html>
