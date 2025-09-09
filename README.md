@@ -4,7 +4,7 @@ A minimal, professional portfolio website showcasing my journey as an ECE studen
 
 ## 🚀 Live Demo
 
-Visit: [https://sameer-cmd-git.github.io](https://sameer-cmd-git.github.io)
+Visit: https://sameer-cmd-git.github.io/Sameer-Space/
 
 ## ✨ Features
 
@@ -114,3 +114,4 @@ This project is open source and available under the [MIT License](LICENSE).
 **Made with ❤️ and curiosity for learning**
 
 *"Building and learning, one project at a time" 🚀*
+
